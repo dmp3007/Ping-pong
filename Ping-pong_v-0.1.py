@@ -69,7 +69,7 @@ class Player(GameSprite):
 player_left = Player('bita-new.png', 50, 380, 7, 20, 160)
 player_right = Player('bita-new.png', 730, 380, 7, 20, 160)
 
-
+ball = GameSprite('tf2_ball-new.png', 350, 250, 6, 70, 70)
 clock = time.Clock()
 FPS = 60
 #задали частоту кадров
@@ -97,6 +97,7 @@ while game == True:
 
         player_left.reset()
         player_right.reset()
+        ball.reset()
 
 
     clock.tick(FPS)
