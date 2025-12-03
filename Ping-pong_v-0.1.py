@@ -67,7 +67,7 @@ class Player(GameSprite):
             self.rect.y += self.speed
 
 player_left = Player('bita-new.png', 50, 380, 7, 20, 160)
-player_right = Player('bita-new.png', 7230, 380, 7, 20, 160)
+player_right = Player('bita-new.png', 730, 380, 7, 20, 160)
 
 
 clock = time.Clock()
@@ -92,6 +92,8 @@ while game == True:
     #ВЫХОД       1  - True
     if finish != 1:
         window.blit(background, (0, 0))
+        player_left.update_left()
+        player_right.update_right()
 
         player_left.reset()
         player_right.reset()
