@@ -50,18 +50,24 @@ class  GameSprite(sprite.Sprite):
 #делаем класс-наследник от основы, в него мы запихиваем метод с управлением
 
 class Player(GameSprite):
-    def update(self):
+    def update_left(self):
         keys_pressed = key.get_pressed()
         #прописали для первого спрайта
-        # if keys_pressed[K_w] and self.rect.y > 0:
-        #     self.rect.y -= self.speed
-        # if keys_pressed[K_s] and self.rect.y < 400:
-        #     self.rect.y += self.speed
-        if keys_pressed[K_a] and self.rect.x > 0:
-            self.rect.x -= self.speed
-        if keys_pressed[K_d] and self.rect.x < 620:
-            self.rect.x += self.speed
+        if keys_pressed[K_w] and self.rect.y > 0:
+            self.rect.y -= self.speed
+        if keys_pressed[K_s] and self.rect.y < 440:
+            self.rect.y += self.speed
         #обработали нажатия пользователя c условием что они не выходят из поля зрения
+    def update_right(self):
+        keys_pressed = key.get_pressed()
+        #прописали для первого спрайта
+        if keys_pressed[K_UP] and self.rect.y > 0:
+            self.rect.y -= self.speed
+        if keys_pressed[K_DOWN] and self.rect.y < 440:
+            self.rect.y += self.speed
+
+player_left = Player('bita-new.png', 50, 380, 7, 20, 160)
+player_right = Player('bita-new.png', 7230, 380, 7, 20, 160)
 
 
 clock = time.Clock()
@@ -86,8 +92,11 @@ while game == True:
     #ВЫХОД       1  - True
     if finish != 1:
         window.blit(background, (0, 0))
-    
-    
+
+        player_left.reset()
+        player_right.reset()
+
+
     clock.tick(FPS)
     display.update()
     #на каждом while отрисовываем заного содержимое окна
