@@ -108,12 +108,16 @@ while game == True:
         if ball.rect.y >= 530 or ball.rect.y <= 0:
             speed_y = speed_y * -1
         if ball.rect.x > 730:
-            #условие проигрыша для правого
-            pass
+            lose = font_win.render('Игрок 1 (слева) проиграл', True, (250, 20, 20))
+            window.blit(lose, (65, 250))
         if ball.rect.x < 0:
-            #условие проигрыша левого
-            pass
-            
+            lose = font_win.render('Игрок 2 (справа) проиграл', True, (250, 20, 20))
+            window.blit(lose, (65, 250))
+        
+        if sprite.collide_rect(player_left, ball):
+            speed_x = speed_x * -1
+        if sprite.collide_rect(player_right, ball):
+            speed_x = speed_x * -1
 
         ball.rect.x += speed_x
         ball.rect.y += speed_y
