@@ -43,9 +43,12 @@ class  GameSprite(sprite.Sprite):
         #прямоугольник на котором картинка = получаем ее координаты  
         self.rect.x = player_x #получаем координату х
         self.rect.y = player_y #по y соответственно
+
     def reset(self):
     #отрисовываем картинку в ее координатах (которые задали)
         window.blit(self.image, (self.rect.x, self.rect.y))
+    
+    
 
 #делаем класс-наследник от основы, в него мы запихиваем метод с управлением
 
@@ -79,6 +82,10 @@ FPS = 60
 
 #создали спрайты
 finish = 0
+speed_x = 3
+speed_y = 3
+
+
 
 game = True
 while game == True:
@@ -97,7 +104,21 @@ while game == True:
 
         player_left.reset()
         player_right.reset()
+
+        if ball.rect.y >= 530 or ball.rect.y <= 0:
+            speed_y = speed_y * -1
+        if ball.rect.x > 730:
+            #условие проигрыша для правого
+            pass
+        if ball.rect.x < 0:
+            #условие проигрыша левого
+            pass
+            
+
+        ball.rect.x += speed_x
+        ball.rect.y += speed_y
         ball.reset()
+
 
 
     clock.tick(FPS)
