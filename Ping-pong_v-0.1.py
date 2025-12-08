@@ -29,7 +29,7 @@ display.set_icon(icon)
 # fire_sound.set_volume(0.1)
 
 font_win = font.SysFont('Arial', 70)
-# font_standart = font.SysFont('Arial', 30)
+font_standart = font.SysFont('Arial', 30)
 #установить шрифт/размер 70. Создали обьект Font с такими параметрами
 
 
@@ -84,7 +84,7 @@ FPS = 60
 finish = 0
 speed_x = 3
 speed_y = 3
-
+count_bounce = 0
 
 
 game = True
@@ -110,19 +110,25 @@ while game == True:
         if ball.rect.x > 730:
             lose = font_win.render('Игрок 1 (слева) проиграл', True, (250, 20, 20))
             window.blit(lose, (65, 250))
+            finish = 1
         if ball.rect.x < 0:
             lose = font_win.render('Игрок 2 (справа) проиграл', True, (250, 20, 20))
             window.blit(lose, (65, 250))
+            finish = 1
         
         if sprite.collide_rect(player_left, ball):
             speed_x = speed_x * -1
+            count_bounce += 1
         if sprite.collide_rect(player_right, ball):
             speed_x = speed_x * -1
+            count_bounce += 1
 
         ball.rect.x += speed_x
         ball.rect.y += speed_y
         ball.reset()
 
+        count_bounce_view = font_standart.render(('Общий счёт:' + str(count_bounce)), True, (200, 200, 200))
+        window.blit(count_bounce_view, (10, 10))
 
 
     clock.tick(FPS)
